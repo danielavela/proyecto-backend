@@ -1,6 +1,9 @@
 const db = require('../config/db.config.js');
+const env = require('../config/env.js');
+const { pool } = require('../config/env.js');
 const Child = db.Child;
-
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 /**
  * Save a Child object to database PostgreSQL
  * @param {*} req 
@@ -68,6 +71,40 @@ exports.getChild = (req, res) => {
           });
         })
 }
+
+
+//router.get('/api/search', children.searchChild);
+/**
+ * Retrieve Child information from search one
+ * @param {*} req 
+ * @param {*} res 
+ */
+ exports.searchChild  = async (req, res) => {
+    try{
+        /*const {nameSearch} = req.query;
+        const children = await req.query(
+            "SELECT * FROM children WHERE name ILIKE $1",
+            [`%${nameSearch}%`]
+        );
+            res.json(children.rows);*/
+        let {nameSearch}= req.query;
+        //nameSearch= nameSearch.toLowerCase();
+        Child.findAll({ where: {name:{[Op.iLike]:'%'+nameSearch+'%'}}})
+        .then(children => {
+            res.status(200).json(children);
+        })
+    }catch(error) {
+        // log on console
+        console.log(error);
+
+        res.status(500).json({
+            message: "Error!",
+            error: error
+        });
+    }
+}
+
+
 
 /**
  * Updating a Child
