@@ -36,12 +36,18 @@ db.sequelize.sync({force: true}).then(() => {
   console.log('Drop and Resync with { force: true }');
   Child.sync().then(() => {
     const children = [
-      { name: 'Jack Smith', legalSituation: 'Situacion de riesgo', 
+      { name: 'Simón Vargas', legalSituation: 'Situacion de riesgo', 
       education: 'Primaria', typeIncome: 'caso 1'},
-      { name: 'Adam Obrien', legalSituation: 'Situacion de riesgo', 
+      { name: 'Martin Vargas', legalSituation: 'Situacion de riesgo', 
       education: 'Primaria', typeIncome: 'caso 2'},
-      { name: 'Dana Paola', legalSituation: 'Situacion de riesgo', 
+      { name: 'Juan Pablo Isaza', legalSituation: 'Situacion de riesgo', 
       education: 'Primaria', typeIncome: 'caso 3'},
+      { name: 'Juan Pablo Villamil', legalSituation: 'Situacion de riesgo', 
+      education: 'Primaria', typeIncome: 'caso 4'},
+      { name: 'Ale Posada', legalSituation: 'Situacion de riesgo', 
+      education: 'Primaria', typeIncome: 'caso 5'},
+      { name: 'Martin Veizaga', legalSituation: 'Situacion de riesgo', 
+      education: 'Primaria', typeIncome: 'caso a buscar'},
     ]
     
     for(let i=0; i<children.length; i++){
